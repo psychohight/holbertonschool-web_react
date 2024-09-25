@@ -16,25 +16,21 @@ interface Teacher {
   };
   
   console.log(teacher3);
-
-interface Directors extends Teacher {
-  numberOfReports: number;
+  
+  interface Directors extends Teacher {
+    numberOfReports: number;
   }
   
   const director1: Directors = {
-    firstName: 'John',
-    lastName: 'Doe',
-    location: 'London',
+    firstName: 'Jane',
+    lastName: 'Smith',
+    location: 'New York',
     fullTimeEmployee: true,
-    numberOfReports: 17,
+    numberOfReports: 5,
   };
   
   console.log(director1);
 
-interface Directors extends Teacher {
-  numberOfReports: number;
-  }
-  
   interface printTeacherFunction {
     (firstName: string, lastName: string): string;
   }
@@ -43,4 +39,40 @@ interface Directors extends Teacher {
     return `${firstName.charAt(0)}. ${lastName}`;
   };
   
-  console.log(printTeacher("John", "Doe"));
+  // Example usage:
+  console.log(printTeacher("John", "Doe")); // Output: "J. Doe"
+
+  interface StudentConstructor {
+    new (firstName: string, lastName: string): StudentInterface;
+  }
+  
+  interface StudentInterface {
+    firstName: string;
+    lastName: string;
+    workOnHomework(): string;
+    displayName(): string;
+  }
+  
+  class StudentClass implements StudentInterface {
+    firstName: string;
+    lastName: string;
+  
+    constructor(firstName: string, lastName: string) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+    }
+  
+    workOnHomework(): string {
+      return "Currently working";
+    }
+  
+    displayName(): string {
+      return this.firstName;
+    }
+  }
+  
+  // Example usage:
+  const student = new StudentClass("Jane", "Doe");
+  console.log(student.displayName());      // Output: "Jane"
+  console.log(student.workOnHomework());   // Output: "Currently working"
+  
